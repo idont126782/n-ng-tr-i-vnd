@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<!-- saved from url=(0142)file:///C:/Users/admin/AppData/Local/Temp/32032623-e7b3-4459-aee1-1f55bdca9975_NongTraiViet_.zip.975/gemini-code-1785129432242%20-%20Copy.html -->
+<html lang="vi"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NÔNG TRẠI kiếm tiền VND</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial, sans-serif;user-select:none}
+body{background:#2E7D32;overflow-x:hidden;padding-bottom:120px}
+.top{position:fixed;top:0;left:0;right:0;background:#1B5E20;padding:8px;display:flex;justify-content:space-between;align-items:center;color:white;z-index:10;box-shadow:0 2px 5px rgba(0,0,0,0.5)}
+.xu-box{display:flex;gap:10px;}
+.xu{background:#FFD700;color:#000;padding:4px 10px;border-radius:15px;font-weight:bold;font-size:12px;box-shadow:inset 0 -2px 0 rgba(0,0,0,0.2)}
+.menu{position:fixed;bottom:10px;left:0;right:0;display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:0 8px;z-index:10}
+.btn{padding:8px 0;background:linear-gradient(to bottom, #ffffff, #e0e0e0);border-radius:10px;text-align:center;font-size:10px;font-weight:bold;cursor:pointer;box-shadow:0 4px 0 #9e9e9e;transition:0.1s;color:#333}
+.btn:active{transform:translateY(4px);box-shadow:0 0 0 transparent}
+
+/* VƯỜN ĐÃ THU NHỎ (6 CỘT) */
+#vuon{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;width:95%;max-width:400px;margin:60px auto 10px;padding:8px;background:rgba(0,0,0,0.2);border-radius:10px}
+.o{aspect-ratio:1;border-radius:8px;position:relative;transition:0.1s;border:2px solid #000;cursor:pointer}
+.o:active{transform:scale(0.95)}
+.o.dat-khoa{background:#4E342E;border-color:#212121} 
+.o.dat-trong{background:#81C784;border-color:#388E3C} 
+.o.dat-cay{background:#AED581;border-color:#558B2F} 
+.o.dat-thuhoach{background:#FFF59D;border-color:#FBC02D;box-shadow:0 0 10px #FFEB3B}
+
+.gia{position:absolute;bottom:2px;left:50%;transform:translateX(-50%);background:#FF9800;color:white;padding:1px 3px;border-radius:5px;font-size:7px;font-weight:bold;white-space:nowrap}
+.cay{position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);font-size:18px}
+.timer{position:absolute;bottom:2px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.7);color:#FFF;font-size:7.5px;padding:1px 3px;border-radius:4px;font-weight:bold;white-space:nowrap}
+.thuhoach-btn{position:absolute;bottom:2px;left:50%;transform:translateX(-50%);background:#F44336;color:white;font-size:7.5px;padding:1px 3px;border-radius:4px;font-weight:bold;white-space:nowrap;animation: nhapnhay 1s infinite}
+
+@keyframes nhapnhay { 0%{opacity:1} 50%{opacity:0.5} 100%{opacity:1} }
+
+/* POPUP */
+.popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:400px;background:#FFFDE7;color:#333;border-radius:15px;padding:15px;display:none;z-index:100;max-height:85vh;overflow-y:auto;border:4px solid #FFC107;box-shadow:0 10px 25px rgba(0,0,0,0.5)}
+.overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:99;display:none}
+.close{position:absolute;top:10px;right:15px;font-size:22px;cursor:pointer;color:#D32F2F;font-weight:bold}
+.popup h3{text-align:center;margin-bottom:15px;color:#E65100;border-bottom:2px dashed #ccc;padding-bottom:5px}
+
+.item{background:white;padding:10px;border-radius:8px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;font-size:13px;border:1px solid #ddd;box-shadow:0 2px 4px rgba(0,0,0,0.05)}
+.btn1{padding:8px 15px;background:#4CAF50;color:white;border:none;border-radius:8px;font-weight:bold;cursor:pointer;box-shadow:0 3px 0 #2E7D32}
+.btn1:active{transform:translateY(3px);box-shadow:none}
+
+.input, .select{width:100%;padding:10px;margin:8px 0;border-radius:8px;border:1px solid #ccc;font-size:14px}
+.lvbar{background:#424242;height:10px;border-radius:10px;margin-top:4px;width:80px;overflow:hidden}
+.lvfill{background:#4CAF50;height:100%;width:0%;transition:0.3s}
+.text-center{text-align:center;font-size:12px;margin:5px 0;color:#555}
+
+table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
+th,td{border:1px solid #ddd;padding:8px;text-align:center}
+th{background:#FF9800;color:white}
+tr:nth-child(even){background:#f9f9f9}
+
+/* CSS VÒNG QUAY CHIẾC NÓN KỲ DIỆU */
+.vongquay-container {position: relative;width: 260px;height: 260px;margin: 15px auto;}
+.banh-xe {
+  width: 100%; height: 100%; border-radius: 50%;
+  border: 6px solid #FF5722; position: relative; overflow: hidden;
+  transition: transform 4s cubic-bezier(0.15, 0.85, 0.15, 1);
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+.kim-chi {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  width: 0; height: 0; border-left: 10px solid transparent;
+  border-right: 10px solid transparent; border-bottom: 25px solid #D32F2F;
+  z-index: 10; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+}
+.o-quay {
+  position: absolute; width: 50%; height: 50%;
+  top: 0; left: 50%; transform-origin: 0% 100%;
+  display: flex; align-items: flex-start; justify-content: center;
+  font-size: 11px; font-weight: bold; color: #fff; padding-top: 15px;
+  text-shadow: 1px 1px 1px #000;
+}
+</style>
+</head>
+<body>
+
+<!-- ÂM THANH -->
+<audio id="sfx-click" src="https://cdn.pixabay.com/download/audio/2022/03/24/audio_d1718f8e65.mp3" preload="auto"></audio>
+<audio id="sfx-coin" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_0625c1539c.mp3" preload="auto"></audio>
+<audio id="sfx-plant" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_73e7284b23.mp3" preload="auto"></audio>
+<audio id="sfx-harvest" src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_79f26c4b12.mp3" preload="auto"></audio>
+
+<div class="top">
+  <div>
+    <div style="font-weight:bold;font-size:14px">LV.<span id="lv">1</span></div>
+    <div class="lvbar"><div id="lvfill" class="lvfill" style="width: 3.07377%;"></div></div>
+  </div>
+  <div class="xu-box">
+    <div class="xu">💰 <span id="xu">5.000</span> Xu</div>
+    <div class="xu">💳 <span id="vnd">5.000</span> đ</div>
+  </div>
+</div>
+
+<div id="vuon"><div id="o_0" class="o dat-trong"></div><div id="o_1" class="o dat-trong"></div><div id="o_2" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_3" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_4" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_5" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_6" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_7" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_8" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_9" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_10" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_11" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_12" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_13" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_14" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_15" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_16" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_17" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_18" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_19" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_20" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_21" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_22" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_23" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_24" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_25" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_26" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_27" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_28" class="o dat-khoa"><div class="gia">50k Xu</div></div><div id="o_29" class="o dat-khoa"><div class="gia">50k Xu</div></div></div>
+
+<div class="menu">
+  <div class="btn" onclick="openUI(&#39;cuahang&#39;)">🏪<br>CỬA HÀNG</div>
+  <div class="btn" onclick="openUI(&#39;kho&#39;)">🏠<br>NHÀ KHO</div>
+  <div class="btn" onclick="openUI(&#39;nhiemvu&#39;)">📋<br>NHIỆM VỤ</div>
+  <div class="btn" onclick="openUI(&#39;video&#39;)">📺<br>XEM VIDEO</div>
+  <div class="btn" onclick="openUI(&#39;vuotlink&#39;)">🔗<br>VƯỢT LINK</div>
+  <div class="btn" onclick="openUI(&#39;vongquay&#39;)">🎡<br>VÒNG QUAY</div>
+  <div class="btn" onclick="openUI(&#39;nap&#39;)">📥<br>NẠP TIỀN</div>
+  <div class="btn" onclick="openUI(&#39;rut&#39;)">📤<br>RÚT TIỀN</div>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeAll()" style="display: none;"></div>
+
+<!-- CỬA HÀNG -->
+<div id="cuahang" class="popup" style="display: none;"><span class="close" onclick="closeAll()">×</span>
+  <h3>🏪 CỬA HÀNG HẠT GIỐNG</h3>
+  <div class="text-center">Nhấn "MUA" để mua hạt. Thu hoạch sau 12 Giờ!</div>
+  <div id="list-hat"></div>
+</div>
+
+<!-- KHO -->
+<div id="kho" class="popup" style="display: none;"><span class="close" onclick="closeAll()">×</span>
+  <h3>🏠 NHÀ KHO (Không giới hạn)</h3>
+  <div class="text-center" style="color:red;font-weight:bold">Vào kho CHỌN hạt giống trước khi trồng!</div>
+  <table>
+    <thead><tr><th>Loại</th><th>Hạt</th><th>Thành phẩm</th><th>Hành Động</th></tr></thead>
+    <tbody id="list-kho"><tr>
+      <td><span style="font-size:18px">🌾</span> Lúa Nước</td>
+      <td><b>0</b><br><button style="font-size:10px;padding:3px" onclick="chonTrang(&#39;lua&#39;)">TRỒNG</button></td>
+      <td><b>0</b></td>
+      <td>
+        <button class="btn1" style="font-size:10px;padding:5px" onclick="banSp(&#39;lua&#39;)">BÁN<br>+10k Xu</button>
+      </td>
+    </tr><tr>
+      <td><span style="font-size:18px">🌽</span> Ngô</td>
+      <td><b>0</b><br><button style="font-size:10px;padding:3px" onclick="chonTrang(&#39;ngo&#39;)">TRỒNG</button></td>
+      <td><b>0</b></td>
+      <td>
+        <button class="btn1" style="font-size:10px;padding:5px" onclick="banSp(&#39;ngo&#39;)">BÁN<br>+22k Xu</button>
+      </td>
+    </tr><tr>
+      <td><span style="font-size:18px">🍎</span> Táo</td>
+      <td><b>0</b><br><button style="font-size:10px;padding:3px" onclick="chonTrang(&#39;tao&#39;)">TRỒNG</button></td>
+      <td><b>0</b></td>
+      <td>
+        <button class="btn1" style="font-size:10px;padding:5px" onclick="banSp(&#39;tao&#39;)">BÁN<br>+55k Xu</button>
+      </td>
+    </tr><tr>
+      <td><span style="font-size:18px">🌳</span> Cây Vàng</td>
+      <td><b>0</b><br><button style="font-size:10px;padding:3px" onclick="chonTrang(&#39;vang&#39;)">TRỒNG</button></td>
+      <td><b>0</b></td>
+      <td>
+        <button class="btn1" style="font-size:10px;padding:5px" onclick="banSp(&#39;vang&#39;)">BÁN<br>+180k Xu</button>
+      </td>
+    </tr></tbody>
+  </table>
+</div>
+
+<!-- NHIỆM VỤ -->
+<div id="nhiemvu" class="popup" style="display: none;"><span class="close" onclick="closeAll()">×</span>
+  <h3>📋 NHIỆM VỤ HÀNG NGÀY</h3>
+  <div class="item">
+    <div><b>Điểm danh</b><br><span style="color:#2E7D32">+10,000 Xu</span></div>
+    <button class="btn1" onclick="lamNhiemVu(&#39;diemdanh&#39;, 10000)">NHẬN</button>
+  </div>
+  <div class="item">
+    <div><b>Chia sẻ bạn bè</b><br><span style="color:#2E7D32">+5,000 Xu</span></div>
+    <button class="btn1" onclick="lamNhiemVu(&#39;chiase&#39;, 5000)">CHIA SẺ</button>
+  </div>
+</div>
+
+<!-- VIDEO -->
+<div id="video" class="popup" style="display: none;"><span class="close" onclick="closeAll()">×</span>
+  <h3>📺 XEM VIDEO (15-30s)</h3>
+  <div class="text-center">Mỗi video nhận <b>+2,000 Xu</b>. Giới hạn 20 video/ngày.</div>
+  <p class="text-center" style="font-size:16px">Còn lại: <b id="luot-video" style="color:red">20</b>/20 lượt</p>
+  <button class="btn1" style="width:100%;margin-top:10px;padding:12px;font-size:16px" onclick="xemVideo()"> BẮT ĐẦU XEM VIDEO</button>
+</div>
+
+<!-- VƯỢT LINK -->
+<div id="vuotlink" class="popup" style="display: none;"><span class="close" onclick="closeAll()">×</span>
+  <h3>🔗 VƯỢT LINK NHẬN THƯỞNG</h3>
+  <div class="item"><div><b>Link 1</b><br><span style="color:#2E7D32">+5,000 Xu</span></div><button class="btn1" onclick="vuotLink(1)">VƯỢT</button></div>
+  <div class="item"><div><b>Link 2</b><br><span style="color:#2E7D32">+5,000 Xu</span></div><button class="btn1" onclick="vuotLink(2)">VƯỢT</button></div>
+  <div class="item"><div><b>Link 3</b><br><span style="color:#2E7D32">+5,000 Xu</span></div><button class="btn1" onclick="vuotLink(3)">VƯỢT</button></div>
+</div>
+
+<!-- VÒNG QUAY -->
+<div id="vongquay" class="popup" style="display: none;"><span class="close" onclick="closeAll()">×</span>
+  <h3>🎡 VÒNG QUAY MAY MẮN</h3>
+  <div class="text-center">Vé quay: <b style="color:red">20,000 Xu / Lượt</b></div>
+  
+  <div class="vongquay-container">
+    <div class="kim-chi"></div>
+    <div class="banh-xe" id="banhXe">
+      <div class="o-quay" style="background:#4CAF50; transform: rotate(0deg) skewY(-50deg);"><span>1,000đ</span></div>
+      <div class="o-quay" style="background:#FF9800; transform: rotate(36deg) skewY(-50deg);"><span>2,000đ</span></div>
+      <div class="o-quay" style="background:#03A9F4; transform: rotate(72deg) skewY(-50deg);"><span>3,000đ</span></div>
+      <div class="o-quay" style="background:#9C27B0; transform: rotate(108deg) skewY(-50deg);"><span>4,000đ</span></div>
+      <div class="o-quay" style="background:#E91E63; transform: rotate(144deg) skewY(-50deg);"><span>5,000đ</span></div>
+      <div class="o-quay" style="background:#795548; transform: rotate(180deg) skewY(-50deg);"><span>2,000đ</span></div>
+      <div class="o-quay" style="background:#607D8B; transform: rotate(216deg) skewY(-50deg);"><span>1,000đ</span></div>
+      <div class="o-quay" style="background:#8BC34A; transform: rotate(252deg) skewY(-50deg);"><span>5,000đ</span></div>
+      <div class="o-quay" style="background:#FF5722; transform: rotate(288deg) skewY(-50deg);"><span>10,000đ</span></div>
+      <div class="o-quay" style="background:#FFEB3B; color:#000; transform: rotate(324deg) skewY(-50deg);"><span>50,000đ</span></div>
+    </div>
+  </div>
+
+  <button class="btn1" id="btnQuay" style="width:100%;padding:12px;font-size:16px;background:#FF5722" onclick="quayVongQuay()">QUAY NGAY</button>
+  <div id="kqquay" class="text-center" style="margin-top:10px;font-size:15px;font-weight:bold;color:#D32F2F"></div>
+</div>
+
+<!-- NẠP TIỀN -->
+<div id="nap" class="popup" style="display: none;"><span class="close" onclick="closeAll()">×</span>
+  <h3>📥 NẠP TIỀN</h3>
+  <div class="text-center">Tỷ giá: 1 Xu = 1 VNĐ (Min nạp 50,000đ)</div>
+  <select id="cong-nap" class="select" onchange="doiPhuongThucNap()">
+    <option value="momo">Ví Momo</option>
+    <option value="zalopay">Ví ZaloPay</option>
+    <option value="usdt">USDT (Crypto)</option>
+    <option value="vcb">Vietcombank</option>
+    <option value="tcb">Techcombank</option>
+    <option value="mb">MB Bank</option>
+    <option value="acb">ACB Bank</option>
+    <option value="bidv">BIDV</option>
+    <option value="tpbank">TPBank</option>
+    <option value="vpbank">VPBank</option>
+    <option value="agribank">Agribank</option>
+    <option value="sacombank">Sacombank</option>
+    <option value="bidv">BIDV</option>
+    <option value="eximbank">Eximbank</option>
+    <option value="shb">SHB</option>
+    <option value="hdbank">HDBank</option>
+  </select>
+  <div id="thong-tin-nap" style="background:#f1f1f1;padding:8px;border-radius:6px;font-size:12px;margin:8px 0;text-align:center;font-weight:bold;color:#1B5E20">
+    Số tài khoản: 0912345678 (ND: NAP NONGTRAI [Tên])
+  </div>
+  <input type="number" id="so-tien-nap" class="input" placeholder="Nhập số tiền cần nạp...">
+  <button class="btn1" style="width:100%" onclick="xuLyGiaoDich(&#39;nap&#39;)">TẠO LỆNH NẠP</button>
+</div>
+
+<!-- RÚT TIỀN -->
+<div id="rut" class="popup" style="display: none;"><span class="close" onclick="closeAll()">×</span>
+  <h3>📤 RÚT TIỀN</h3>
+  <div class="text-center">Tỷ giá: 1 Xu = 1 VNĐ (Min rút 50,000đ)</div>
+  <select id="cong-rut" class="select">
+    <option value="momo">Ví Momo</option>
+    <option value="zalopay">Ví ZaloPay</option>
+    <option value="usdt">USDT (Crypto)</option>
+    <option value="vcb">Vietcombank</option>
+    <option value="tcb">Techcombank</option>
+    <option value="mb">MB Bank</option>
+    <option value="acb">ACB Bank</option>
+    <option value="bidv">BIDV</option>
+    <option value="tpbank">TPBank</option>
+    <option value="vpbank">VPBank</option>
+    <option value="agribank">Agribank</option>
+    <option value="sacombank">Sacombank</option>
+    <option value="eximbank">Eximbank</option>
+    <option value="shb">SHB</option>
+    <option value="hdbank">HDBank</option>
+  </select>
+  <input type="text" id="tk-rut" class="input" placeholder="Nhập số tài khoản / Số điện thoại / Địa chỉ ví...">
+  <input type="text" id="ten-rut" class="input" placeholder="Nhập tên chủ tài khoản...">
+  <input type="number" id="so-tien-rut" class="input" placeholder="Nhập số tiền cần rút...">
+  <button class="btn1" style="width:100%;background:#D32F2F" onclick="xuLyGiaoDich(&#39;rut&#39;)">TẠO LỆNH RÚT</button>
+</div>
+
+<script>
+/* CẤU HÌNH TRÒ CHƠI */
+const TGIAN_TRONG = 12 * 60 * 60 * 1000; 
+const GIA_MO_DAT = 50000; 
+const MIN_GIAO_DICH = 50000; 
+
+const HATS = {
+  lua: { ten: "Lúa Nước", giaMua: 5000, giaBan: 10000, icon: "🌾", minLv: 1 },
+  ngo: { ten: "Ngô", giaMua: 10000, giaBan: 22000, icon: "🌽", minLv: 3 },
+  tao: { ten: "Táo", giaMua: 25000, giaBan: 55000, icon: "🍎", minLv: 5 },
+  vang:{ ten: "Cây Vàng", giaMua: 80000, giaBan: 180000, icon: "🌳", minLv: 8 }
+};
+
+const LV_THRESHOLDS = [0, 100000, 588000, 1500000, 4500000, 10000000, 15000000, 30000000, 50000000, 80000000, 150000000];
+
+let gameData = JSON.parse(localStorage.getItem('nongtrai_v2')) || {
+  xu: 100000, 
+  tongKiem: 100000, 
+  luotVideo: 20,
+  ngayLuu: new Date().toDateString(),
+  kho: { lua_hat:0, lua_sp:0, ngo_hat:0, ngo_sp:0, tao_hat:0, tao_sp:0, vang_hat:0, vang_sp:0 },
+  dat: []
+};
+
+let hatDangChon = null; 
+let intervalThoiGian;
+let gocQuayHienTai = 0;
+let dangQuay = false;
+
+if (gameData.dat.length === 0) {
+  for (let i=0; i<30; i++) {
+    gameData.dat.push({ mo: i<1, dangTrong: false, loai: null, thoiGianXong: 0 }); 
+  }
+}
+
+if(gameData.ngayLuu !== new Date().toDateString()){
+  gameData.luotVideo = 20;
+  localStorage.removeItem('diemdanh');
+  localStorage.removeItem('chiase');
+  gameData.ngayLuu = new Date().toDateString();
+}
+
+function playSound(id) {
+  let audio = document.getElementById(id);
+  audio.currentTime = 0;
+  audio.play().catch(()=>{});
+}
+
+function openUI(id) {
+  playSound('sfx-click');
+  closeAll();
+  if(id === 'cuahang') renderCuaHang();
+  if(id === 'kho') renderKho();
+  if(id === 'video') document.getElementById('luot-video').innerText = gameData.luotVideo;
+  if(id === 'nap') doiPhuongThucNap();
+  document.getElementById(id).style.display = 'block';
+  document.getElementById('overlay').style.display = 'block';
+}
+
+function closeAll() {
+  let popups = document.querySelectorAll('.popup');
+  popups.forEach(p => p.style.display = 'none');
+  document.getElementById('overlay').style.display = 'none';
+}
+
+function saveData() {
+  localStorage.setItem('nongtrai_v2', JSON.stringify(gameData));
+  updateTopBar();
+}
+
+function getLV() {
+  for (let i = LV_THRESHOLDS.length - 1; i >= 1; i--) {
+    if (gameData.tongKiem >= LV_THRESHOLDS[i]) return i;
+  }
+  return 1;
+}
+
+function updateTopBar() {
+  let lvHienTai = getLV();
+  document.getElementById('xu').innerText = gameData.xu.toLocaleString();
+  document.getElementById('vnd').innerText = gameData.xu.toLocaleString(); 
+  document.getElementById('lv').innerText = lvHienTai;
+  
+  let nextLvExp = LV_THRESHOLDS[lvHienTai+1] || LV_THRESHOLDS[lvHienTai];
+  let currLvExp = LV_THRESHOLDS[lvHienTai];
+  let phanTram = 100;
+  if(nextLvExp > currLvExp){
+    phanTram = ((gameData.tongKiem - currLvExp) / (nextLvExp - currLvExp)) * 100;
+  }
+  document.getElementById('lvfill').style.width = Math.min(100, Math.max(0, phanTram)) + '%';
+}
+
+const vuonUI = document.getElementById('vuon');
+
+function initVuon() {
+  vuonUI.innerHTML = '';
+  for(let i=0; i<30; i++) {
+    let div = document.createElement('div');
+    div.id = 'o_' + i;
+    div.onclick = () => xuLyClickO(i);
+    vuonUI.appendChild(div);
+    renderO(i);
+  }
+  if(intervalThoiGian) clearInterval(intervalThoiGian);
+  intervalThoiGian = setInterval(loopThoiGian, 1000);
+}
+
+function renderO(i) {
+  let oData = gameData.dat[i];
+  let div = document.getElementById('o_' + i);
+  
+  if (!oData.mo) {
+    div.className = 'o dat-khoa';
+    div.innerHTML = `<div class="gia">50k Xu</div>`;
+  } 
+  else if (!oData.dangTrong) {
+    div.className = 'o dat-trong';
+    div.innerHTML = '';
+  } 
+  else {
+    let now = Date.now();
+    let conLai = oData.thoiGianXong - now;
+    
+    if (conLai <= 0) {
+      div.className = 'o dat-thuhoach';
+      div.innerHTML = `<div class="cay">${HATS[oData.loai].icon}</div><div class="thuhoach-btn">THU HOẠCH</div>`;
+    } else {
+      div.className = 'o dat-cay';
+      div.innerHTML = `<div class="cay" style="opacity:0.6">${HATS[oData.loai].icon}</div><div class="timer">${formatTime(conLai)}</div>`;
+    }
+  }
+}
+
+function xuLyClickO(i) {
+  playSound('sfx-click');
+  let oData = gameData.dat[i];
+  
+  if (!oData.mo) {
+    if (confirm("Mở khóa ô đất này với giá 50,000 Xu?")) {
+      if (gameData.xu >= GIA_MO_DAT) {
+        gameData.xu -= GIA_MO_DAT;
+        gameData.dat[i].mo = true;
+        playSound('sfx-coin');
+        saveData();
+        renderO(i);
+      } else {
+        alert("Không đủ Xu để mở đất!");
+      }
+    }
+    return;
+  }
+  
+  if (!oData.dangTrong) {
+    if (!hatDangChon) return alert("Hãy vào NHÀ KHO chọn Hạt Giống trước khi trồng!");
+    if (gameData.kho[hatDangChon + "_hat"] <= 0) return alert("Bạn đã hết loại hạt này trong kho!");
+    
+    let lvUser = getLV();
+    if (lvUser < HATS[hatDangChon].minLv) return alert(`Bạn cần đạt Cấp ${HATS[hatDangChon].minLv} mới có thể trồng cây này!`);
+
+    gameData.kho[hatDangChon + "_hat"]--;
+    gameData.dat[i].dangTrong = true;
+    gameData.dat[i].loai = hatDangChon;
+    gameData.dat[i].thoiGianXong = Date.now() + TGIAN_TRONG; 
+    
+    playSound('sfx-plant');
+    saveData();
+    renderO(i);
+    return;
+  }
+  
+  if (oData.dangTrong) {
+    let now = Date.now();
+    if (now >= oData.thoiGianXong) {
+      gameData.kho[oData.loai + "_sp"]++;
+      gameData.dat[i].dangTrong = false;
+      gameData.dat[i].loai = null;
+      gameData.dat[i].thoiGianXong = 0;
+      
+      playSound('sfx-harvest');
+      saveData();
+      renderO(i);
+    } else {
+      alert("Cây chưa chín, hãy đợi thêm nhé!");
+    }
+  }
+}
+
+function loopThoiGian() {
+  let now = Date.now();
+  for(let i=0; i<30; i++) {
+    let oData = gameData.dat[i];
+    if (oData.mo && oData.dangTrong) {
+      if(oData.thoiGianXong > now) {
+         let timerEl = document.querySelector(`#o_${i} .timer`);
+         if(timerEl) timerEl.innerText = formatTime(oData.thoiGianXong - now);
+      } else if (document.querySelector(`#o_${i} .timer`)) {
+         renderO(i); 
+      }
+    }
+  }
+}
+
+function formatTime(ms) {
+  if (ms <= 0) return "00:00:00";
+  let totalSec = Math.floor(ms / 1000);
+  let h = Math.floor(totalSec / 3600);
+  let m = Math.floor((totalSec % 3600) / 60);
+  let s = totalSec % 60;
+  return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+}
+
+function renderCuaHang() {
+  let html = '';
+  let lvUser = getLV();
+  for(let key in HATS) {
+    let item = HATS[key];
+    if (lvUser >= item.minLv) {
+      html += `<div class="item">
+        <div><span style="font-size:20px">${item.icon}</span> <b>Hạt ${item.ten}</b><br>Giá: ${item.giaMua.toLocaleString()} Xu</div>
+        <button class="btn1" onclick="muaHat('${key}', ${item.giaMua})">MUA</button>
+      </div>`;
+    } else {
+      html += `<div class="item" style="opacity:0.6;background:#eee">
+        <div><span style="font-size:20px">${item.icon}</span> <b>Hạt ${item.ten}</b><br><span style="color:red">Mở khóa ở Cấp ${item.minLv}</span></div>
+      </div>`;
+    }
+  }
+  document.getElementById('list-hat').innerHTML = html;
+}
+
+function muaHat(loai, gia) {
+  if(gameData.xu >= gia) {
+    gameData.xu -= gia;
+    gameData.kho[loai + "_hat"]++;
+    playSound('sfx-coin');
+    alert(`Đã mua 1 Hạt ${HATS[loai].ten}. Hãy vào Nhà Kho để xem!`);
+    saveData();
+    renderCuaHang();
+  } else {
+    alert("Không đủ tiền mua hạt này!");
+  }
+}
+
+function renderKho() {
+  let html = '';
+  for(let key in HATS) {
+    let item = HATS[key];
+    let soHat = gameData.kho[key + "_hat"] || 0;
+    let soSp = gameData.kho[key + "_sp"] || 0;
+    
+    html += `<tr>
+      <td><span style="font-size:18px">${item.icon}</span> ${item.ten}</td>
+      <td><b>${soHat}</b><br><button style="font-size:10px;padding:3px" onclick="chonTrang('${key}')">TRỒNG</button></td>
+      <td><b>${soSp}</b></td>
+      <td>
+        <button class="btn1" style="font-size:10px;padding:5px" onclick="banSp('${key}')">BÁN<br>+${item.giaBan/1000}k Xu</button>
+      </td>
+    </tr>`;
+  }
+  document.getElementById('list-kho').innerHTML = html;
+}
+
+function chonTrang(loai) {
+  if(gameData.kho[loai + "_hat"] > 0){
+    hatDangChon = loai;
+    playSound('sfx-click');
+    alert(`Đã chọn hạt ${HATS[loai].ten}! Hãy bấm vào ô đất trống để trồng.`);
+    closeAll();
+  } else {
+    alert("Bạn không có hạt giống này trong kho, hãy ra Cửa hàng mua nhé!");
+  }
+}
+
+function banSp(loai) {
+  if(gameData.kho[loai + "_sp"] > 0) {
+    let tien = HATS[loai].giaBan;
+    gameData.kho[loai + "_sp"]--;
+    gameData.xu += tien;
+    gameData.tongKiem += tien; 
+    playSound('sfx-coin');
+    saveData();
+    renderKho();
+  } else {
+    alert("Chưa có thành phẩm để bán!");
+  }
+}
+
+function lamNhiemVu(loai, thuong) {
+  if(localStorage.getItem(loai) === gameData.ngayLuu) {
+    return alert("Hôm nay bạn đã làm nhiệm vụ này rồi!");
+  }
+  playSound('sfx-coin');
+  gameData.xu += thuong;
+  gameData.tongKiem += thuong;
+  localStorage.setItem(loai, gameData.ngayLuu);
+  alert("Nhiệm vụ thành công! +" + thuong.toLocaleString() + " Xu");
+  saveData();
+  closeAll();
+}
+
+function xemVideo() {
+  if(gameData.luotVideo <= 0) return alert("Đã hết lượt xem video hôm nay!");
+  playSound('sfx-click');
+  document.getElementById('video').innerHTML = `<h3 style="text-align:center;margin-top:20px">Đang phát video quảng cáo...</h3><p style="text-align:center" id="demnguoc-vid">15</p>`;
+  
+  let time = 15;
+  let iv = setInterval(() => {
+    time--;
+    document.getElementById('demnguoc-vid').innerText = time;
+    if(time <= 0){
+      clearInterval(iv);
+      gameData.luotVideo--;
+      gameData.xu += 2000; 
+      gameData.tongKiem += 2000;
+      playSound('sfx-coin');
+      alert("Xem video hoàn tất! +2,000 Xu");
+      saveData();
+      closeAll();
+      document.getElementById('video').innerHTML = `<span class="close" onclick="closeAll()">×</span>
+      <h3>📺 XEM VIDEO (15-30s)</h3>
+      <div class="text-center">Mỗi video nhận <b>+2,000 Xu</b>. Giới hạn 20 video/ngày.</div>
+      <p class="text-center" style="font-size:16px">Còn lại: <b id="luot-video" style="color:red"></b>/20 lượt</p>
+      <button class="btn1" style="width:100%;margin-top:10px;padding:12px;font-size:16px" onclick="xemVideo()">BẮT ĐẦU XEM VIDEO</button>`;
+    }
+  }, 1000);
+}
+
+function vuotLink(n) {
+  window.open("https://google.com?q=vuot+link+game+" + n, "_blank");
+  setTimeout(() => {
+    playSound('sfx-coin');
+    gameData.xu += 5000;
+    gameData.tongKiem += 5000;
+    alert("Vượt link thành công! +5,000 Xu");
+    saveData();
+  }, 2000);
+}
+
+function quayVongQuay() {
+  if(dangQuay) return;
+  if(gameData.xu < 20000) return alert("Bạn cần 20,000 Xu để mua vé quay!");
+  
+  gameData.xu -= 20000;
+  playSound('sfx-click');
+  saveData();
+  
+  dangQuay = true;
+  document.getElementById('btnQuay').disabled = true;
+  document.getElementById('kqquay').innerText = "Đang quay...";
+  
+  const listGiai = [1000, 2000, 3000, 4000, 5000, 2000, 1000, 5000, 10000, 50000];
+  const tyLeIndex = [0, 0, 0, 1, 1, 2, 3, 4, 5, 6, 7, 8, 8, 9]; 
+  
+  let randomIdx = tyLeIndex[Math.floor(Math.random() * tyLeIndex.length)];
+  let tienThuong = listGiai[randomIdx];
+  
+  let gocMotO = 36;
+  let gocLech = 360 - (randomIdx * gocMotO);
+  gocQuayHienTai += 1800 + gocLech + (Math.random() * 20 - 10); 
+  
+  let banhXe = document.getElementById('banhXe');
+  banhXe.style.transform = `rotate(${gocQuayHienTai}deg)`;
+  
+  setTimeout(() => {
+    gameData.xu += tienThuong;
+    gameData.tongKiem += tienThuong;
+    playSound('sfx-coin');
+    
+    let el = document.getElementById('kqquay');
+    if(tienThuong < 20000) {
+      el.style.color = "#555";
+      el.innerText = `Trúng: +${tienThuong.toLocaleString()} Xu (Lỗ vé quay)`;
+    } else {
+      el.style.color = "#D32F2F";
+      el.innerText = `🎉 TRÚNG LỚN: +${tienThuong.toLocaleString()} Xu 🎉`;
+    }
+    
+    saveData();
+    dangQuay = false;
+    document.getElementById('btnQuay').disabled = false;
+  }, 4000); 
+}
+
+function doiPhuongThucNap() {
+  let val = document.getElementById('cong-nap').value;
+  let info = document.getElementById('thong-tin-nap');
+  if(val === 'momo') info.innerText = "Ví Momo: 0912345678 (ND: NAP NONGTRAI)";
+  else if(val === 'zalopay') info.innerText = "Ví ZaloPay: 0912345678 (ND: NAP NONGTRAI)";
+  else if(val === 'usdt') info.innerText = "Ví USDT (TRC20): T9y... (Min 2 USDT)";
+  else info.innerText = "STK Ngân Hàng: 1903999999999 - Chủ TK: NONG TRAI VIET";
+}
+
+function xuLyGiaoDich(loai) {
+  let soTien = parseInt(document.getElementById('so-tien-' + loai).value);
+  if(isNaN(soTien) || soTien < MIN_GIAO_DICH) {
+    return alert(`Số tiền tối thiểu là ${MIN_GIAO_DICH.toLocaleString()}đ!`);
+  }
+  
+  if(loai === 'rut') {
+    let stk = document.getElementById('tk-rut').value;
+    let ten = document.getElementById('ten-rut').value;
+    if(!stk || !ten) return alert("Vui lòng điền đầy đủ thông tin tài khoản nhận tiền!");
+    if(gameData.xu < soTien) return alert("Số dư Xu của bạn không đủ để rút!");
+    gameData.xu -= soTien;
+    alert(`Tạo lệnh Rút ${soTien.toLocaleString()}đ về tài khoản ${stk} thành công! Đang chờ duyệt.`);
+    document.getElementById('tk-rut').value = '';
+    document.getElementById('ten-rut').value = '';
+  } else {
+    gameData.xu += soTien;
+    alert(`Nạp ${soTien.toLocaleString()}đ thành công! (+${soTien.toLocaleString()} Xu vào tài khoản).`);
+  }
+  
+  playSound('sfx-coin');
+  document.getElementById('so-tien-' + loai).value = '';
+  saveData();
+  closeAll();
+}
+
+initVuon();
+updateTopBar();
+</script>
+
+
+</body></html>
